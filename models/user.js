@@ -24,5 +24,6 @@ const userSchema = new mongoose.Schema({
 		default:Date.now
 	}
 });
+testahaag
 
 module.exports = mongoose.model('User',userSchema);
