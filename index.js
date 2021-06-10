@@ -1,3 +1,5 @@
+//PORT BUAT HOST
+var PORT = process.env.PORT || 3000;
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
@@ -50,5 +52,6 @@ app.use('/api/user', authRoute);
 
 
 
-
-app.listen(3000,() => console.log('Server Up and Running'));
+app.listen(PORT, function () {
+ console.log('Server running');
+});
