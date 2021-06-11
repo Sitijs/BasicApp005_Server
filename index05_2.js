@@ -11,10 +11,10 @@ app.use(bodyParser.json({limit: '50mb'}));
 app.use(express.json({limit: '50mb'}));
 app.use(express.urlencoded({limit: '50mb', extended: true}));
 
-const authRoute = require('./routes/auth');
+//const authRoute = require('./routes/auth');
 const DataRoute = require ('./routes/DataRoute');
 app.use('/data', DataRoute);
-app.use('/api/user', authRoute);
+//app.use('/api/user', authRoute);
 
 app.get('/', (req,res) => {
 	res.send('server data dummy 004');
