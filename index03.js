@@ -1,3 +1,4 @@
+var PORT = process.env.PORT || 3000;
 const express = require ('express');
 const app = express();
 const mongoose = require('mongoose');
@@ -47,11 +48,11 @@ mongoose.connect('mongodb+srv://sitijs:admin24@cluster0.l556o.mongodb.net/Data00
 	useFindAndModify: false
 },
 	 () => 
- console.log('connected to DB!')
+ console.log('connected to Database!')
 );
 
 //listening to server
-app.listen(3000);
+//app.listen(3000);
 // //import package
 // //server
 // const express = require('express');
@@ -92,3 +93,6 @@ app.listen(3000);
 
 // //start LISTEN AT PORT:
 // app.listen(4000);
+app.listen(PORT, function () {
+ console.log('Server running');
+});
