@@ -81,9 +81,9 @@ const dataPatient = require('../models/PatientData');
     router.get('/Lastest_Specific/:ID', async (req,res) => {
         try{
             const query = {
-                id_pasien: req.query.id_pasien
+                id_pasien: req.query.pasienID
             }
-            console.log(req.body.id_pasien);
+            console.log(req.query.pasienID);
             const datadataPatient_Last = await dataPatient.find(query).limit(1).sort({$natural:-1});
             res.json(datadataPatient_Last); 
         }catch(err){
