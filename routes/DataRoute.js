@@ -3,10 +3,7 @@ const router = express.Router();
 const mongoose = require ('mongoose');
 //Deklarasi Model
 const dataPatient = require('../models/PatientData');
-//const Patient_RekamMedisStatis = require('../models/Patient_Statis_Model');
-//TEST PATH:
-// router.get('/', (req,res) => {
-// 	res.send('This is POST')
+const recordTracker = require('../recordTracker');
 
 // });
 //DATA DIRI
@@ -25,6 +22,7 @@ const dataPatient = require('../models/PatientData');
 		console.log(req.body) //cek Body
 		const post = new dataPatient({
 			//jadi ikut schema baru
+            index_Record: noRecord,
             id_pasien: req.body.id_pasien,
             Name: req.body.Name,
             Birthdate: req.body.Birthdate,
@@ -78,21 +76,61 @@ const dataPatient = require('../models/PatientData');
     });
 
     //get Last by ID
-    router.get('/Lastest_Specific/:ID', async (req,res) => {
+    //router.get('/Lastest_Specific/:ID', async (req,res) => {
+    router.get('/Lastest/:ID', async (req,res) => {
         try{
             const query = {
-                id_pasien: req.query.pasienID
+                id_pasien: req.query.pasienID,
             }
             console.log(req.query.pasienID);
             const datadataPatient_Last = await dataPatient.find(query).limit(1).sort({$natural:-1});
             res.json(datadataPatient_Last); 
         }catch(err){
             console.log(err);
-            res.json({message: 'err GET LAST by All Sensor ID'});
+            res.json({message: 'err GET LAST by All DataEKG ID'});
         }
     });
 
-    //get All spesific
+    //get last record by id
+    router.get('/Record/:ID', async (req,res) => {
+        try{
+            console.log(req.query.pasienID);
+            console.log(req.query.recordIndex);
+            const query = {
+                index_Record: req.query.recordIndex,
+                id_pasien: req.query.pasienID
+            }
+            //console.log(req.body.id_pasien);
+            const datadataPatient_All = await dataPatient.find(query);
+            console.log(datadataPatient_All);
+            res.json(datadataPatient_All);   
+        }catch(err){
+            console.log(err);
+            res.json({message: 'err GET ALL Sensor by ID'});
+        }
+    });
+
+
+    //
+    router.get('/LastRecord/:ID', async (req,res) => {
+        try{
+            console.log(req.query.pasienID);
+            noRecord = await recordTracker.getNumberofRecord(req.query.pasienID);
+            const query = {
+                index_Record: noRecord,
+                id_pasien: req.query.pasienID
+            }
+            //console.log(req.body.id_pasien);
+            const datadataPatient_All = await dataPatient.find(query);
+            console.log(datadataPatient_All);
+            res.json(datadataPatient_All);   
+        }catch(err){
+            console.log(err);
+            res.json({message: 'err GET ALL Sensor by ID'});
+        }
+    });
+
+        //get All spesific
     router.get('/All_Specific', async (req,res) => {
         try{
             const query = {
@@ -107,6 +145,5 @@ const dataPatient = require('../models/PatientData');
             res.json({message: 'err GET ALL Sensor by ID'});
         }
     });
-    
 
 module.exports = router;

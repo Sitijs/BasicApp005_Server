@@ -2,6 +2,10 @@
 const mongoose = require('mongoose');
 
 const PatientSchema = mongoose.Schema({
+	noRecord: {
+		type: Number,
+		require: true
+	},
 	id_pasien: {
 		type: String,
 		required: true
