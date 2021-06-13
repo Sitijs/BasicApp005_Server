@@ -6,21 +6,27 @@ const User = require('./models/PatientData');
 
 
 async function getNumberofRecord(pasienID) {
-	const query = {
-			id_pasien : pasienID
-	}
-
-	var noRecord;
-	await User.find(query).limit(1).sort({$natural:-1})
-	.then(result =>{
-		noRecord = result.noRecord;
-	})
-	.catch (err => console.error (err, 'err get number record'))
-    if (noRecord == null){
-        noRecord = 0;
+	 try{
+        const query = {
+                    id_pasien: req.query.pasienID,
+        }
+        console.log(req.query.pasienID);
+        const dataPatient_Last = await dataPatient.find(query).limit(1).sort({$natural:-1});
+        const noRecord = dataPatient_Last.noRecord;
+        console.log(noRecord);
+        if (dataPatient_Last == null){
+            noRecord = 0;
+            console.log('Belum ada data pasien, membuat record baru');
+        }else{
+            const noRecord = dataPatient_Last.noRecord;
+            console.log(noRecord);
+        }
+        return noRecord;
+        //res.json(datadataPatient_Last); 
+    }catch(err){
+        console.log(err);
+        res.json({message: 'err GET LAST by All DataEKG ID'});
     }
-	return noRecord;
-
 }
 async function updateNumberofRecord(pasienID) {
     const query = {
