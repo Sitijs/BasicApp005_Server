@@ -6,7 +6,7 @@ const recordTracker = require('../recordTracker')
     //get last (Number of save document) record number by ID pasien
     router.get('/Last/:ID', async (req,res) => {
         try{
-            recordNum = await recordTracker.getNumberofRecord(req.query.userID);
+            recordNum = await recordTracker.getNumberofRecord(req.query.pasienID);
             //console.log("HAI" + recordNum)
             res.json(recordNum); 
         }catch(err){
@@ -17,7 +17,7 @@ const recordTracker = require('../recordTracker')
     //Add record number by ID pasien
     router.get('/Update/:ID', async (req,res) => {
         try{
-            recordNum = await recordTracker.updateNumberofRecord(req.query.userID);
+            recordNum = await recordTracker.updateNumberofRecord(req.query.pasienID);
             console.log("AKHIRNYA" + recordNum)
             res.json(recordNum); 
         }catch(err){
