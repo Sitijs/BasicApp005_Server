@@ -11,7 +11,7 @@ async function getNumberofRecord(pasienID) {
                     id_pasien: pasienID
         }
         //console.log(req.query.pasienID);
-        const dataPatient_Last = await dataPatient.find(query).limit(1).sort({$natural:-1});
+        const dataPatient_Last = await User.find(query).limit(1).sort({$natural:-1});
         const noRecord = dataPatient_Last.noRecord;
         console.log(noRecord);
         if (dataPatient_Last == null){
