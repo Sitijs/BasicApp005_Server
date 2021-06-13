@@ -8,9 +8,9 @@ const User = require('./models/PatientData');
 async function getNumberofRecord(pasienID) {
 	 try{
         const query = {
-                    id_pasien: req.query.pasienID,
+                    id_pasien: pasienID
         }
-        console.log(req.query.pasienID);
+        //console.log(req.query.pasienID);
         const dataPatient_Last = await dataPatient.find(query).limit(1).sort({$natural:-1});
         const noRecord = dataPatient_Last.noRecord;
         console.log(noRecord);
