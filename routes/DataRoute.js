@@ -19,7 +19,11 @@ const recordTracker = require('../recordTracker');
 
 	//SUBMIT DATADIRI
 	router.post('/save', async (req,res) => { //pake async kalau save CARA 2
-		console.log(req.body) //cek Body
+		//console.log(req.body) //cek Body
+
+        console.log("SAVE REKONS " + req.body);
+        const noRecord = await recordTracker.getNumberofRecord(req.body.id_pasien);
+        console.log(noRecord);
 		const post = new dataPatient({
 			//jadi ikut schema baru
             index_Record: noRecord,
