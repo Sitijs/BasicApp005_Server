@@ -45,6 +45,7 @@ const recordTracker = require('../recordTracker');
             Channel_C6: req.body.Channel_C6
 		});
 	    // Save and validate
+        console.log(post);
 	    post.save()
 	    .then(post=> {
 	        return res.status(200).json({
