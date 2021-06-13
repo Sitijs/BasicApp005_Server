@@ -20,6 +20,9 @@ app.get('/', (req,res) => {
 	res.send('server data dummy 004');
 });
 
+const recordRoute = require('./routes/recordTrackerRoute');
+app.use('/record', recordRoute);
+
 //connect to database
 mongoose.connect('mongodb+srv://sitijs:admin24@cluster0.l556o.mongodb.net/Data004?retryWrites=true&w=majority',{
 	useNewUrlParser:true, 
