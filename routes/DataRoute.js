@@ -26,7 +26,7 @@ const recordTracker = require('../recordTracker');
         console.log(noRecord);
 		const post = new dataPatient({
 			//jadi ikut schema baru
-            index_Record: noRecord+1,
+            noRecord: noRecord+1,
             id_pasien: req.body.id_pasien,
             Name: req.body.Name,
             Birthdate: req.body.Birthdate,
