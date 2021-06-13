@@ -23,10 +23,11 @@ const recordTracker = require('../recordTracker');
 
         console.log("SAVE REKONS " + req.body);
         const noRecord = await recordTracker.getNumberofRecord(req.body.id_pasien);
+        noRecord = noRecord+1;
         console.log(noRecord);
 		const post = new dataPatient({
 			//jadi ikut schema baru
-            noRecord: noRecord+1,
+            noRecord: noRecord,
             id_pasien: req.body.id_pasien,
             Name: req.body.Name,
             Birthdate: req.body.Birthdate,
