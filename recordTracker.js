@@ -11,7 +11,7 @@ async function getNumberofRecord(pasienID) {
 	}
 
 	var noRecord;
-	await User.findById(query).limit(1).sort({$natural:-1})
+	await User.findBy(query).limit(1).sort({$natural:-1})
 	.then(result =>{
 		noRecord = result.noRecord;
 	})
