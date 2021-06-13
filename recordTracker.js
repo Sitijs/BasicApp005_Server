@@ -10,16 +10,13 @@ async function getNumberofRecord(pasienID) {
         const query = {
                     id_pasien: pasienID
         }
-        //console.log(req.query.pasienID);
+        console.log(query.pasienID);
         const dataPatient_Last = await User.find(query).limit(1).sort({$natural:-1});
         const noRecord = dataPatient_Last.noRecord;
         console.log(noRecord);
-        if (dataPatient_Last == null){
+        if (noRecord == null){
             noRecord = 0;
             console.log('Belum ada data pasien, membuat record baru');
-        }else{
-            const noRecord = dataPatient_Last.noRecord;
-            console.log(noRecord);
         }
         return noRecord;
         //res.json(datadataPatient_Last); 
